@@ -1,7 +1,7 @@
 // Función para verificar si la API está disponible
 export async function checkApiAvailability() {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/"
+    const apiUrl = process.env.NEXT_PUBLIC_URL_BACK 
 
     // Intentamos hacer una petición simple para verificar la conexión
     const response = await fetch(`${apiUrl}`, {
@@ -24,7 +24,7 @@ export async function checkApiAvailability() {
 export async function getResenias(limit = 5, offset = 0) {
   try {
     // Aseguramos que la URL termine con una barra
-    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/")
+    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK);
     const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET
 
     console.log("Obteniendo reseñas de:", `${apiUrl}resenias/?limit=${limit}&offset=${offset}`)
@@ -63,7 +63,7 @@ export async function getResenias(limit = 5, offset = 0) {
 export async function getCertificaciones() {
   try {
     // Aseguramos que la URL termine con una barra
-    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/")
+    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK)
     const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET
 
     console.log("Obteniendo certificaciones de:", `${apiUrl}certificaciones/`)
@@ -101,7 +101,7 @@ export async function getCertificaciones() {
 export async function getFrases() {
   try {
     // Aseguramos que la URL termine con una barra
-    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/")
+    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK)
     const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET
 
     console.log("Obteniendo frases de:", `${apiUrl}frases/`)
@@ -139,7 +139,7 @@ export async function getFrases() {
 export async function registerPageVisit() {
   try {
     // Aseguramos que la URL termine con una barra
-    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/")
+    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK)
 
     // Recopilamos la información necesaria
     const data = {
@@ -183,7 +183,7 @@ export async function registerPageVisit() {
 export async function submitContactForm(formData: any) {
   try {
     // Aseguramos que la URL termine con una barra
-    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/")
+    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK)
     const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET
 
     console.log("Enviando formulario de contacto a:", `${apiUrl}contacto/`)
@@ -223,7 +223,7 @@ export async function submitContactForm(formData: any) {
 export async function submitResenia(reseniaData: any) {
   try {
     // Aseguramos que la URL termine con una barra
-    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK || "http://localhost:8000/api/")
+    const apiUrl = ensureTrailingSlash(process.env.NEXT_PUBLIC_URL_BACK )
     const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET
 
     console.log("Enviando reseña a:", `${apiUrl}resenias/`)
