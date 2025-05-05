@@ -1,0 +1,45 @@
+# 1) Dependencias
+FROM node:18-alpine AS deps
+WORKDIR /app
+
+# Copiamos lockfiles e instalamos deps
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm \
+ && pnpm install --no-frozen-lockfile
+
+# 2) Build
+FROM node:18-alpine AS builder
+WORKDIR /app
+
+# Copiamos el código y las deps ya instaladas
+COPY . .
+COPY --from=deps /app/node_modules ./node_modules
+
+# Instalamos pnpm también en esta etapa
+RUN npm install -g pnpm
+
+# Pasamos la URL de la API para Next.js
+ARG NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_PUBLIC_API_BASE_URL=http://149.50.139.148:8000/api/
+
+# Generamos el build de Next
+RUN pnpm build
+
+# 3) Imagen de producción
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+# Modo producción
+ENV NODE_ENV=production
+
+# Instalamos pnpm para arrancar
+RUN npm install -g pnpm
+
+# Solo copiamos lo necesario para correr
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=deps    /app/node_modules ./node_modules
+COPY package.json   ./
+
+EXPOSE 3000
+CMD ["pnpm", "start"]

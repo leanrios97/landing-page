@@ -1,0 +1,16 @@
+services:
+  api:
+    image: leanrios97/back_landing:tagname
+    container_name: back_landing_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./staticfiles:/app/staticfiles
+    restart: unless-stopped
+
+  frontend:
+    image: leanrios97/front_landing
+    container_name: front_landing
+    ports:
+       - "3000:3000"
+    restart: unless-stopped

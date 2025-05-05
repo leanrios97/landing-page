@@ -1,0 +1,6 @@
+from .request_contact_view import ContactCreateApiView
+from .resenia_view import ReseniaListCreateApiView
+from .github_repo_view import GithubRepoListApiView
+from .certificados_view import CertificacionListApiView
+from .frases_view import FrasesListApiView
+from .visita_page_view import PageVisitCreateApiView

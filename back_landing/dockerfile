@@ -1,0 +1,37 @@
+# 1. Imagen base Python ligera
+FROM python:3.10-slim
+
+# 2. Variables para evitar .pyc y para logs en tiempo real
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# 3. Instala SQLite en caso de que la imagen no lo traiga (opcional)
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends sqlite3 libsqlite3-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+# 4. Directorio de la app
+WORKDIR /app
+
+# 5. Copiar primero sólo requirements para cachear instalación
+COPY requirements.txt .
+
+# 6. Instalar pip y dependencias Python
+RUN pip install --upgrade pip \
+ && pip install -r requirements.txt
+
+# 7. Copiar todo el código al contenedor
+COPY . .
+
+# 8. (Opcional) Si usas archivos estáticos dentro del contenedor:
+# RUN python manage.py collectstatic --noinput
+
+# 9. Exponer el puerto 8000
+EXPOSE 8000
+
+# Generar los estáticos
+RUN python manage.py collectstatic --noinput
+
+EXPOSE 8000
+
+CMD ["gunicorn", "back_landing.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4"]
