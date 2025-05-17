@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import PageVisitTracker from "@/components/page-visit-tracker"
+import ChatWidget from "@/components/chat-widget"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -13,7 +14,6 @@ export const metadata: Metadata = {
     icon: "/icono-pag.ico",
     shortcut: "/icono-pag.ico",
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -26,7 +26,9 @@ export default function RootLayout({
       <body>
         {children}
         <PageVisitTracker />
+        <ChatWidget />
       </body>
     </html>
   )
 }
+
