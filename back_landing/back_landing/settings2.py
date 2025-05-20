@@ -117,8 +117,15 @@ WSGI_APPLICATION = "back_landing.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE":   "django.db.backends.postgresql",
+        "NAME":     "postgres",                            # nombre de la BD
+        "USER":     "postgres",                            # usuario
+        "PASSWORD": "",                     # tu contraseña
+        "HOST":     "", # host de Supabase
+        "PORT":     "",                                # puerto por defecto
+        "OPTIONS": {
+            "sslmode": "require",                          # Supabase exige SSL
+        },
     }
 }
 
