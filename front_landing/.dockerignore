@@ -1,0 +1,30 @@
+# Ignorar dependencias locales
+node_modules
+.pnpm-store
+
+# Next.js build output
+.next
+out
+dist
+
+# Archivos de logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno
+.env
+.env.*.local
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# IDEs/editors
+.vscode/
+.idea/

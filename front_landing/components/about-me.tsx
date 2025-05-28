@@ -10,7 +10,7 @@ export default function AboutMe() {
           <h2 className="text-3xl font-bold mb-4">¿Quién Soy?</h2>
         </div>
 
-        <Card className="border-none shadow-lg max-w-4xl mx-auto">
+        <Card className="border-none shadow-lg max-w-4xl mx-auto mb-8">
           <CardContent className="p-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg leading-relaxed mb-6">
@@ -38,7 +38,25 @@ export default function AboutMe() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Video centrado y más pequeño */}
+        <div className="max-w-md mx-auto">
+          <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-gray-100">
+          <iframe
+                  src="https://www.youtube.com/embed/JHm1kubpn2g?si=r3SIShOgVs6ceAvu"
+                  title="¿Quién Soy? - Mi Historia Profesional"
+                  frameborder="0"
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                />
+          </div>
+          <p className="text-sm text-gray-600 mt-3 text-center">Conoce más sobre mi trayectoria profesional</p>
+        </div>
       </div>
     </section>
   )
 }
+
+
